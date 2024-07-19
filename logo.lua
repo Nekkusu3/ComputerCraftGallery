@@ -435,7 +435,10 @@ local image, palette = {
     {0.137255, 0.066667, 0.007843},
     {0.388235, 0.082353, 0.000000},
 }
-
+-- change the randomint ceiling to the max amount of images you have
+-- the images must be named image1.lua, image2.lua etc.
+-- The image drawing logic is from sanjuuni GUI. A 6x6 Monitor stack is 250x250 pixels.
+-- TODO: Get amount of images by enummerating files
 term.clear()
 term = peripheral.wrap("top")
 term.setTextScale(0.5)
@@ -444,6 +447,14 @@ for y, r in ipairs(image) do
     term.setCursorPos(1, y)
     term.blit(table.unpack(r))
 end
+print("runother called")
+os.sleep(10)
+print("sleep over, running image.lua")
+local randomint = math.random(2)
+local randomstring = "image" .. randomint .. ".lua" 
+print(randomint)
+print(randomstring)
+shell.run(randomstring)
 end
 sleep(0.04)
 read()
